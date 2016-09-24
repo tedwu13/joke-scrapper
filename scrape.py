@@ -1,7 +1,10 @@
 from bs4 import BeautifulSoup
+from pprint import pprint
+
 import urllib
 import lxml.html
 import time
+
 
 r = urllib.urlopen('http://www.laughfactory.com/jokes/popular-jokes').read()
 soup = BeautifulSoup(r, "lxml")
@@ -20,10 +23,20 @@ def get_jokes_nav_urls():
     print urls
     return urls
 
+def append_url_parameters(urls): 
+    paramsArray = ['/1','/2','/3','/4','/5']
+    urlArray = []
+    for url in urls: 
+        url += paramsArray[0]
+        urlArray.append(url)
+    print urlArray
+
 def get_jokes():
-    print "Starting scraping process....."
+    print "Start Scraping....."
     urls = get_jokes_nav_urls()
-    # Test urls = ['http://www.laughfactory.com/jokes/popular-jokes', 
+
+    append_url_parameters(urls)
+    # urls = ['http://www.laughfactory.com/jokes/popular-jokes', 
     # 'http://www.laughfactory.com/jokes/latest-jokes']
 
     jokes = []
@@ -35,10 +48,8 @@ def get_jokes():
             for child in j.findChildren():
                 jokes.append(child.text.strip().encode('utf-8'))
     print "HERE ARE ALL THE JOKES"
-    print jokes
+    pprint(jokes)
 
-def ():
-    urls 
 def scrape_data():
     get_jokes()
 
@@ -47,4 +58,4 @@ scrape_data()
 
 end_time = time.time()
 execution_time = end_time - start_time
-print("Execution Time ...." %execution_time)
+print("Execution Time .... %s seconds......" %execution_time)
