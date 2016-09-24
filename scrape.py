@@ -1,8 +1,9 @@
 from bs4 import BeautifulSoup
 import urllib
+import lxml.html
+
 r = urllib.urlopen('http://www.laughfactory.com/jokes/popular-jokes').read()
 soup = BeautifulSoup(r, "lxml")
-# jokes = soup.find_all("div", {'class': 'joke-text'})
 
 # Get all the urls from the side navigation bar
 
@@ -23,7 +24,9 @@ def set_scraping_url():
     for joke_url in urls:
         r = urllib.urlopen(joke_url).read()
         soup = BeautifulSoup(r, "lxml")
-        print soup.find_all("div", {'class': 'joke-text'})
-        # jokes.append(soup.find_all("div", {'class': 'joke-text'}))
-        # print jokes
+        # print select(soup, 'div.joke-text p')
+        joke_text = soup.find_all("div", {'class': 'joke-text'})
+        for j in joke_text:
+            for child in j.findChildren():
+                jokes.append(child.text.strip().encode('utf-8'))
 set_scraping_url();
