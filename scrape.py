@@ -36,8 +36,6 @@ def get_jokes():
     urls = get_jokes_nav_urls()
 
     append_url_parameters(urls)
-    # urls = ['http://www.laughfactory.com/jokes/popular-jokes', 
-    # 'http://www.laughfactory.com/jokes/latest-jokes']
 
     jokes = []
     for joke_url in urls:
@@ -47,7 +45,7 @@ def get_jokes():
         for j in joke_text:
             for child in j.findChildren():
                 jokes.append(child.text.strip().encode('utf-8'))
-    print "HERE ARE ALL THE JOKES"
+    print "SHOWING ALL JOKES.........."
     pprint(jokes)
 
 def scrape_data():
