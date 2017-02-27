@@ -7,7 +7,7 @@ import urllib
 def initalSoup(): 
     r = urllib.urlopen('http://quotesnhumor.com/top-50-funniest-memes-collection/').read()
     soup = BeautifulSoup(r, "lxml")
-
+    print soup
 
 # Get all the urls from the side navigation bar
 
