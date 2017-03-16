@@ -2,14 +2,12 @@ from bs4 import BeautifulSoup
 from pprint import pprint
 
 import urllib
-import time
 
 
 def initalSoup(): 
-    r = urllib.urlopen('http://www.laughfactory.com/jokes/popular-jokes').read()
+    r = urllib.urlopen('http://quotesnhumor.com/top-50-funniest-memes-collection/').read()
     soup = BeautifulSoup(r, "lxml")
-    #Calculate the execution time
-    start_time = time.time()
+    print soup
 
 # Get all the urls from the side navigation bar
 
@@ -56,6 +54,3 @@ def scrape_data():
 # Start main script
 scrape_data()
 
-end_time = time.time()
-execution_time = end_time - start_time
-print("Execution Time .... %s seconds......" %execution_time)
